@@ -5,8 +5,8 @@ python3.6 port of qwebchannel.js client library
 
 Requirements:
 ===================================================
-Javascript Websocket api like websocket
-In the example i have used 
+Javascript Websocket api like websocket client.
+In the example i have used
 https://pypi.python.org/pypi/websocket-client 
 
 First run Qt5 standalone websocket c++ example.
