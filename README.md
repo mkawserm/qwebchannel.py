@@ -35,7 +35,6 @@ Example code:
         thread = threading.Thread(target=data_send_from_python, args=(channel,))
         thread.setDaemon(True)
         thread.start()
-        #time.sleep(1)
     def on_open(ws):
         print("Socket started")
         w = QWebchannel(ws,channel_ready)
