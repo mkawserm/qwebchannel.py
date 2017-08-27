@@ -2,7 +2,12 @@
 import sys
 import json
 ###################################################################################################
-
+###################################################################################################
+# ProjectName         : qwebchannel.py
+# ProjectVersion      : 1.0.0
+# ProjectDeveloper    : mkawserm <github.com/mkawserm> 
+# ProjectDescription  : qwebchannel.js client library port for python36
+###################################################################################################
 ###################################################################################################
 QWebChannelMessageTypes:dict = {
     "signal": 1,
@@ -16,12 +21,15 @@ QWebChannelMessageTypes:dict = {
     "setProperty": 9,
     "response": 10,
 }
-
+###################################################################################################
+###################################################################################################
 class JSObject(dict):
+    """Enable dictionary to access like javascript object"""
     __getattr__= dict.__getitem__
     __setattr__= dict.__setitem__
     __delattr__= dict.__delitem__
-
+###################################################################################################
+###################################################################################################
 class QObject(object):
     def __getitem__(self,key):
         return self.__dict__[key]
@@ -261,7 +269,6 @@ class QObject(object):
         for signal in data["signals"]:
             addSignal(signal, False)
 ###################################################################################################
-
 ###################################################################################################
 class QWebchannel(object):
     """QWebchannel port for python3.6"""
@@ -363,28 +370,26 @@ if __name__ == "__main__":
     import websocket
     import threading
 
-    def receivedMessage(message):
+    def receive_message_from_cpp(message):
         print("Received message: {}".format(message))
 
-    def data_send(channel):
+    def data_send_from_python(channel):
         while True:
             inp = input("Enter message: ")
             channel.objects.dialog.receiveText(inp)
-            #print()
-            #print(channel.objects.dialog.test)
 
-    def inv(channel):
-        channel.objects.dialog.sendText.connect(receivedMessage)
+    def channel_ready(channel):
+        channel.objects.dialog.sendText.connect(receive_message_from_cpp)
         channel.objects.dialog.receiveText("Client connected, ready to send/receive messages!")
-        thread = threading.Thread(target=data_send, args=(channel,))
+        thread = threading.Thread(target=data_send_from_python, args=(channel,))
         thread.setDaemon(True)
         thread.start()
         #time.sleep(1)
     def on_open(ws):
         print("Socket started")
-        w = QWebchannel(ws,inv)
-    
+        w = QWebchannel(ws,channel_ready)
     ws = websocket.WebSocketApp("ws://127.0.0.1:12345")
     ws.on_open = on_open
     ws.run_forever()
+###################################################################################################
 ###################################################################################################
