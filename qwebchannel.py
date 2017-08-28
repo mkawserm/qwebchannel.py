@@ -9,7 +9,14 @@ import json
 # ProjectDescription  : qwebchannel.js client library port for python36
 ###################################################################################################
 ###################################################################################################
-QWebChannelMessageTypes:dict = {
+class JSObject(dict):
+    """Enable dictionary to access like javascript object"""
+    __getattr__= dict.__getitem__
+    __setattr__= dict.__setitem__
+    __delattr__= dict.__delitem__
+###################################################################################################
+###################################################################################################
+QWebChannelMessageTypes:JSObject = {
     "signal": 1,
     "propertyUpdate": 2,
     "init": 3,
@@ -21,13 +28,6 @@ QWebChannelMessageTypes:dict = {
     "setProperty": 9,
     "response": 10,
 }
-###################################################################################################
-###################################################################################################
-class JSObject(dict):
-    """Enable dictionary to access like javascript object"""
-    __getattr__= dict.__getitem__
-    __setattr__= dict.__setitem__
-    __delattr__= dict.__delitem__
 ###################################################################################################
 ###################################################################################################
 class QObject(object):
