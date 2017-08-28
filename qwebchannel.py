@@ -5,7 +5,7 @@ import json
 ###################################################################################################
 # ProjectName         : qwebchannel.py
 # ProjectVersion      : 1.0.0
-# ProjectDeveloper    : mkawserm <github.com/mkawserm> 
+# ProjectDeveloper    : kawser <github.com/mkawserm> 
 # ProjectDescription  : qwebchannel.js client library port for python36
 ###################################################################################################
 ###################################################################################################
