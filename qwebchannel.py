@@ -365,8 +365,6 @@ class QWebchannel(object):
 ###################################################################################################
 ###################################################################################################
 if __name__ == "__main__":
-    #from websocket import create_connection
-    import time
     import websocket
     import threading
 
@@ -384,7 +382,6 @@ if __name__ == "__main__":
         thread = threading.Thread(target=data_send_from_python, args=(channel,))
         thread.setDaemon(True)
         thread.start()
-        #time.sleep(1)
     def on_open(ws):
         print("Socket started")
         w = QWebchannel(ws,channel_ready)
