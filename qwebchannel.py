@@ -10,7 +10,7 @@ import json
 ###################################################################################################
 ###################################################################################################
 class JSObject(dict):
-    """Enable dictionary to access like javascript object"""
+    """Enable dictionary access like javascript object"""
     __getattr__= dict.__getitem__
     __setattr__= dict.__setitem__
     __delattr__= dict.__delitem__
